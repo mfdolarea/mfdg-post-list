@@ -1,4 +1,8 @@
+import axios from 'axios';
+
 (async () => {
+    $('#mfdg-post-list').append('<div id="mfdg-pl-wrapper"></div>');
+
     const displayPosts = (init, offset) => {
         const posts = JSON.parse($('#mfdg-post-list').data('posts'));
         const slicedPosts = posts.slice(init, offset);
