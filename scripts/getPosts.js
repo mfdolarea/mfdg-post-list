@@ -1,9 +1,11 @@
 import axios from 'axios';
+import jq from 'jquery';
 
 (async () => {
+    jq('#mfdg-post-list').append('<div id="mfdg-pl-wrapper"></div>');
 
     const displayPosts = (init, offset) => {
-        const posts = JSON.parse($('#mfdg-post-list').data('posts'));
+        const posts = JSON.parse(jq('#mfdg-post-list').data('posts'));
         const slicedPosts = posts.slice(init, offset);
         let blocks = [];
 
@@ -17,7 +19,7 @@ import axios from 'axios';
             blocks.push(html.trim());
         });
 
-        $('#mfdg-pl-wrapper').append(blocks.join(''));
+        jq('#mfdg-pl-wrapper').append(blocks.join(''));
     };
 
     let receivedPostsNum = 0;
@@ -48,8 +50,7 @@ import axios from 'axios';
     } catch (error) {
         console.error(error);
     } finally {
-        $('#mfdg-post-list').append('<div id="mfdg-pl-wrapper"></div>');
-        $('#mfdg-post-list').data('posts', JSON.stringify(posts));
+        jq('#mfdg-post-list').data('posts', JSON.stringify(posts));
 
         displayPosts(0, 1);
     }
