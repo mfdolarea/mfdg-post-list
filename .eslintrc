@@ -1,0 +1,33 @@
+{
+    "extends": [
+        "eslint:recommended",
+        "plugin:you-dont-need-lodash-underscore/compatible"
+    ],
+    "parser": "babel-eslint",
+    "parserOptions": {
+        "ecmaVersion": 6,
+        "sourceType": "module"
+    },
+    "settings": {
+        "import/resolver": {
+            "babel-module": {}
+        }
+    },
+    "env": {
+        "es6": true,
+        "node": true,
+        "mocha": true
+    },
+    "rules": {
+        "strict": 0,
+        "no-console": "off",
+        "keyword-spacing": [
+            "error"
+        ],
+        "no-useless-catch": "error"
+    },
+    "plugins": [
+        "import",
+        "you-dont-need-lodash-underscore"
+    ]
+}

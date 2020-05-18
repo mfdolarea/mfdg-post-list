@@ -1,0 +1,38 @@
+{
+  "name": "mfdg-post-list",
+  "version": "1.0.0",
+  "description": "Scripts en node para integración continua",
+  "author": "Miguel F. Dolarea",
+  "license": "MIT",
+  "repository": {
+    "type": "git"
+  },
+  "main": "index.js",
+  "scripts": {
+    "bundle:node": "webpack --config ./webpack/node.config.js",
+    "bundle:web": "webpack --config ./webpack/web.config.js"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.5.5",
+    "axios": "^0.19.0",
+    "jquery": "^3.5.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.0",
+    "@babel/node": "^7.2.2",
+    "@babel/plugin-proposal-class-properties": "^7.4.0",
+    "@babel/plugin-transform-runtime": "^7.5.5",
+    "@babel/preset-env": "^7.4.2",
+    "@babel/register": "^7.4.0",
+    "babel-eslint": "^10.0.1",
+    "babel-loader": "^8.0.5",
+    "clean-webpack-plugin": "^2.0.1",
+    "eslint": "^5.15.3",
+    "eslint-loader": "^2.1.2",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-you-dont-need-lodash-underscore": "^6.5.0",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0",
+    "webpack-merge": "^4.2.1"
+  }
+}
