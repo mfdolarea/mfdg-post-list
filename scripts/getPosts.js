@@ -1,7 +1,6 @@
 import axios from 'axios';
 
 (async () => {
-    $('#mfdg-post-list').append('<div id="mfdg-pl-wrapper"></div>');
 
     const displayPosts = (init, offset) => {
         const posts = JSON.parse($('#mfdg-post-list').data('posts'));
@@ -49,6 +48,7 @@ import axios from 'axios';
     } catch (error) {
         console.error(error);
     } finally {
+        $('#mfdg-post-list').append('<div id="mfdg-pl-wrapper"></div>');
         $('#mfdg-post-list').data('posts', JSON.stringify(posts));
 
         displayPosts(0, 1);
