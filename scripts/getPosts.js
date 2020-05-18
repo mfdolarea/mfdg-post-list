@@ -18,7 +18,7 @@ import axios from 'axios';
             blocks.push(html.trim());
         });
 
-        $('#mfdg-post-list').append(blocks.join(''));
+        $('#mfdg-pl-wrapper').append(blocks.join(''));
     };
 
     let receivedPostsNum = 0;
