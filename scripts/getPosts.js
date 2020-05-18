@@ -1,27 +1,51 @@
 import axios from 'axios';
-import jq from 'jquery';
+import $ from 'jquery';
 
-(async () => {
-    jq('#mfdg-post-list').append('<div id="mfdg-pl-wrapper"></div>');
+$('#mfdg-post-list').append('<div id="mfdg-posts"></div>');
+$('#mfdg-post-list').append('<div class="mfdg-buttons"><a id="mfdg-button-show-more" href="#">mostrar más</a></div>');
 
-    const displayPosts = (init, offset) => {
-        const posts = JSON.parse(jq('#mfdg-post-list').data('posts'));
-        const slicedPosts = posts.slice(init, offset);
-        let blocks = [];
+$('#mfdg-pl-wrapper').on('click', '#mfdg-button-show-more', e => {
+    e.preventDefault();
 
-        slicedPosts.forEach(function (post) {
-            const html = `
+    const params = getParams();
+
+    displayPosts(params);
+});
+
+const getParams = () => {
+    return {
+        init: Number($('#mfdg-post-list').data('post')),
+        offset: Number($('#mfdg-post-list').data('per-page')),
+        total: Number($('#mfdg-post-list').data('total'))
+    };
+}
+
+const displayPosts = (parameters) => {
+    const posts = JSON.parse($('#mfdg-post-list').data('posts'));
+    const end = parameters.init + parameters.offset;
+    const slicedPosts = posts.slice(parameters.init, end);
+    let blocks = [];
+
+    slicedPosts.forEach(function (post) {
+        const html = `
                     <a class="mfdg-post-link" href="${post.link}">
                         <span class="mfdg-post__client">${post.client}: </span>
                         <span class="mfdg-post__title">${post.title}.</span>
                     </a>`;
 
-            blocks.push(html.trim());
-        });
+        blocks.push(html.trim());
+    });
 
-        jq('#mfdg-pl-wrapper').append(blocks.join(''));
-    };
+    $('#mfdg-posts').append(blocks.join(''));
+    $('#mfdg-post-list').data('post', end);
 
+    if (end === parameters.total) {
+        $('#mfdg-button-show-more').hide();
+    }
+};
+
+const getPosts = async () => {
+    const params = getParams();
     let receivedPostsNum = 0;
     let posts = [];
 
@@ -45,13 +69,19 @@ import jq from 'jquery';
                 });
             }
 
-            if (receivedPostsNum === Number(apiPosts.headers['x-wp-total'])) break;
+            if (receivedPostsNum === Number(apiPosts.headers['x-wp-total'])) {
+                $('#mfdg-post-list').data('total', receivedPostsNum);
+
+                break;
+            }
         }
     } catch (error) {
         console.error(error);
     } finally {
-        jq('#mfdg-post-list').data('posts', JSON.stringify(posts));
+        $('#mfdg-post-list').data('posts', JSON.stringify(posts));
 
-        displayPosts(0, 1);
+        displayPosts(params);
     }
-})();
+};
+
+getPosts();
