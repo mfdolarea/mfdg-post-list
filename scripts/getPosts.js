@@ -37,7 +37,7 @@ const displayPosts = (parameters) => {
     });
 
     $('#mfdg-posts').append(blocks.join(''));
-    $('#mfdg-post-list').data('post', end);
+    $('#mfdg-post-list').attr('data-post', end);
 
     if (end === parameters.total) {
         $('#mfdg-button-show-more').hide();
@@ -70,7 +70,7 @@ const getPosts = async () => {
             }
 
             if (receivedPostsNum === Number(apiPosts.headers['x-wp-total'])) {
-                $('#mfdg-post-list').data('total', receivedPostsNum);
+                $('#mfdg-post-list').attr('data-total', receivedPostsNum);
 
                 break;
             }
@@ -78,7 +78,7 @@ const getPosts = async () => {
     } catch (error) {
         console.error(error);
     } finally {
-        $('#mfdg-post-list').data('posts', JSON.stringify(posts));
+        $('#mfdg-post-list').attr('data-posts', JSON.stringify(posts));
 
         displayPosts(params);
     }
