@@ -4,7 +4,7 @@ import $ from 'jquery';
 $('#mfdg-post-list').append('<div id="mfdg-posts"></div>');
 $('#mfdg-post-list').append('<div class="mfdg-buttons"><a id="mfdg-button-show-more" href="#">mostrar más</a></div>');
 
-$('#mfdg-pl-wrapper').on('click', '#mfdg-button-show-more', e => {
+$('#mfdg-post-list').on('click', '#mfdg-button-show-more', e => {
     e.preventDefault();
 
     const params = getParams();
