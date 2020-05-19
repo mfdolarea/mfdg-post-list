@@ -39,7 +39,7 @@ const displayPosts = (parameters) => {
     $('#mfdg-posts').append(blocks.join(''));
     $('#mfdg-post-list').attr('data-post', end);
 
-    if (end === parameters.total) {
+    if (end >= parameters.total) {
         $('#mfdg-button-show-more').hide();
     }
 };
