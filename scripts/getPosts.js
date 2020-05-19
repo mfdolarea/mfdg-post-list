@@ -24,6 +24,7 @@ const displayPosts = (parameters) => {
     const posts = JSON.parse($('#mfdg-post-list').attr('data-posts'));
     const end = parameters.init + parameters.offset;
     const slicedPosts = posts.slice(parameters.init, end);
+    const lastPostIndex = parameters.init + slicedPosts.length;
     let blocks = [];
 
     slicedPosts.forEach(function (post) {
@@ -37,9 +38,9 @@ const displayPosts = (parameters) => {
     });
 
     $('#mfdg-posts').append(blocks.join(''));
-    $('#mfdg-post-list').attr('data-post', end);
+    $('#mfdg-post-list').attr('data-post', lastPostIndex);
 
-    if (end >= parameters.total) {
+    if (lastPostIndex === parameters.total) {
         $('#mfdg-button-show-more').hide();
     }
 };
