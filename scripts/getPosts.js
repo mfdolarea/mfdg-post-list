@@ -21,7 +21,7 @@ const getParams = () => {
 }
 
 const displayPosts = (parameters) => {
-    const posts = JSON.parse($('#mfdg-post-list').attr('posts'));
+    const posts = JSON.parse($('#mfdg-post-list').attr('data-posts'));
     const end = parameters.init + parameters.offset;
     const slicedPosts = posts.slice(parameters.init, end);
     let blocks = [];
