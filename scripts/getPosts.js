@@ -14,14 +14,14 @@ $('#mfdg-post-list').on('click', '#mfdg-button-show-more', e => {
 
 const getParams = () => {
     return {
-        init: Number($('#mfdg-post-list').data('post')),
-        offset: Number($('#mfdg-post-list').data('per-page')),
-        total: Number($('#mfdg-post-list').data('total'))
+        init: Number($('#mfdg-post-list').attr('data-post')),
+        offset: Number($('#mfdg-post-list').attr('data-per-page')),
+        total: Number($('#mfdg-post-list').attr('data-total'))
     };
 }
 
 const displayPosts = (parameters) => {
-    const posts = JSON.parse($('#mfdg-post-list').data('posts'));
+    const posts = JSON.parse($('#mfdg-post-list').attr('posts'));
     const end = parameters.init + parameters.offset;
     const slicedPosts = posts.slice(parameters.init, end);
     let blocks = [];
